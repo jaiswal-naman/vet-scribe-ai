@@ -1,7 +1,5 @@
 # Veterinary AI Transcription System
 
-**Confidential Project - Not for public distribution**
-
 A fully functional, cloud-hosted SaaS application for veterinary clinical note transcription using 100% open-source AI models.
 
 ## 🎯 Project Overview

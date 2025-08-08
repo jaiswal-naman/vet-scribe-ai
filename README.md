@@ -358,11 +358,5 @@ journalctl -u vet-transcription -f
 - **Discussions**: GitHub Discussions
 - **Security**: Private security contact
 
-## 📄 License
-
-**Confidential Project** - Not for public distribution
-
-This software is proprietary and confidential. Unauthorized copying, distribution, or use is strictly prohibited.
-
 
 **Built with ❤️ for veterinary professionals** 

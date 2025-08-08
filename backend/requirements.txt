@@ -1,0 +1,11 @@
+# Simplified requirements for easier installation
+fastapi
+uvicorn[standard]
+python-multipart
+torch --index-url https://download.pytorch.org/whl/cpu
+transformers
+vosk
+numpy==1.26.4
+librosa
+soundfile
+python-dotenv

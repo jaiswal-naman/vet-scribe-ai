@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - NEXTAUTH_SECRET=mock-secret-key
+      - GOOGLE_ID=mock-client-id
+      - GOOGLE_SECRET=mock-client-secret
+    volumes:
+      - ./backend/models:/app/models
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXTAUTH_SECRET=mock-secret-key
+      - GOOGLE_ID=mock-client-id
+      - GOOGLE_SECRET=mock-client-secret
+      - NEXTAUTH_URL=http://localhost:3000
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  # Auto-shutdown cron job (halts instance nightly)
+  shutdown:
+    image: alpine:latest
+    command: |
+      sh -c "
+        apk add --no-cache dcron &&
+        echo '0 2 * * * /bin/shutdown -h now' | crontab - &&
+        crond -f
+      "
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped 

@@ -274,7 +274,6 @@ journalctl -u vet-transcription -f
 ## 🤝 Support
 
 ### Documentation
-- [API Documentation](http://localhost:8000/docs)
 - [Vosk Documentation](https://alphacephei.com/vosk/)
 - [BioBERT Documentation](https://huggingface.co/dmis-lab/biobert-v1.1)
 
@@ -289,35 +288,5 @@ journalctl -u vet-transcription -f
 
 This software is proprietary and confidential. Unauthorized copying, distribution, or use is strictly prohibited.
 
----
-
-## 🎯 Demo Walkthrough
-
-### Live Demo URL
-- **Production**: `https://your-deployment-url`
-- **Local**: `http://localhost:3000`
-
-### Demo Credentials
-- **Username**: `demo@vetclinic.com`
-- **Password**: `DemoPassword2024!`
-- **Role**: Veterinarian
-
-### Demo Features
-1. **SAML 2.0 Authentication** - Mock SSO login
-2. **Audio Recording** - Real-time voice capture
-3. **AI Transcription** - Vosk speech recognition
-4. **Medical NER** - BioBERT entity extraction
-5. **Structured Output** - Diagnosis & Treatment sections
-6. **WCAG Compliance** - Full accessibility support
-
-### Demo Script
-1. Navigate to the application
-2. Click "Sign In with SAML 2.0"
-3. Record a veterinary note (e.g., "Patient has fever and lethargy")
-4. Watch real-time transcription
-5. Review structured output
-6. Test accessibility features
-
----
 
 **Built with ❤️ for veterinary professionals** 

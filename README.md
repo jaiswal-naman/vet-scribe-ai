@@ -2,6 +2,84 @@
 
 A fully functional, cloud-hosted SaaS application for veterinary clinical note transcription using 100% open-source AI models.
 
+## 🩺 Veterinary AI Transcription System – Project Introduction
+
+Veterinary practitioners often spend excessive time on clinical note-taking, impacting both efficiency and patient care. **Vet Scribe AI** is a zero-cost, cloud-hosted SaaS that automates veterinary clinical documentation using open-source AI. With real-time speech-to-text and medical entity extraction, it delivers structured, accessible records right from your browser—no proprietary APIs or expensive licenses required.
+
+- **Speech-to-text**: Fast, accurate transcription using Vosk (offline-capable)
+- **Medical understanding**: Extracts diagnoses, medications, and other entities with BioBERT
+- **Fully open-source**: No vendor lock-in; deploy anywhere with free cloud resources
+- **Accessible**: WCAG 2.2-compliant for all users
+
+---
+
+## 🏗️ System Architecture
+
+Below is a text-based architecture diagram illustrating how data flows through the system and how each layer interacts:
+
+```
+                            ┌─────────────────────┐
+                            │       USER          │
+                            │ (Vet or Staff)      │
+                            └────────┬────────────┘
+                                     │
+                                     ▼
+                       ┌──────────────────────────┐
+                       │   FRONTEND (Next.js)     │
+                       │ ───────────────────────  │
+                       │ • Record/upload audio    │
+                       │ • Show progress          │
+                       │ • Display transcript     │
+                       │ • Show extracted entities│
+                       └────────┬─────────────────┘
+                                │
+       POST /transcribe         ▼           GET /progress, /results
+                      ┌──────────────────────────┐
+                      │   BACKEND (FastAPI)       │
+                      │ ────────────────────────  │
+                      │ • Accepts audio upload    │
+                      │ • Assigns task ID         │
+                      │ • Validates/converts audio│
+                      │ • Tracks progress         │
+                      │ • Manages results         │
+                      └─────┬──────────────┬──────┘
+                            │              │
+                            ▼              ▼
+               ┌────────────────┐   ┌─────────────────────┐
+               │ VOSK STT MODEL │   │   BioBERT NLP MODEL │
+               │  (Speech → Text)│   │ (Text → Entities)   │
+               └────────────────┘   └─────────────────────┘
+                            │              ▲
+                            └────┬──────────┘
+                                 ▼
+                      ┌──────────────────────────┐
+                      │  TEMP STORAGE / DATABASE │
+                      │ • Audio files            │
+                      │ • Transcripts            │
+                      │ • Extracted data         │
+                      └──────────────────────────┘
+                                 ▲
+                                 │
+                      ┌──────────────────────────┐
+                      │   FRONTEND (Display)     │
+                      │ Shows results to the user│
+                      └──────────────────────────┘
+```
+
+---
+
+### 🔑 Summary of Data Flow
+
+1. **User → Frontend**: Record or upload audio.
+2. **Frontend → Backend**: Sends audio via `/transcribe`.
+3. **Backend → Vosk**: Converts audio to text.
+4. **Backend → BioBERT**: Extracts medical information.
+5. **Backend → Temp Storage**: Saves transcript and entities.
+6. **Frontend polls** `/progress` and later fetches `/results`.
+7. **Frontend → User**: Displays full results.
+
+---
+
 ## 🎯 Project Overview
 
 This system provides:
